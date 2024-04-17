@@ -1,4 +1,5 @@
 class Organizations::PetsController < Organizations::BaseController
+  include Pagy::Backend
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
 
   layout "dashboard"
@@ -7,7 +8,7 @@ class Organizations::PetsController < Organizations::BaseController
     authorize! Pet, context: {organization: Current.organization}
 
     @q = Pet.ransack(params[:q])
-    @pets = authorized_scope(@q.result)
+    @pagy, @pets = pagy(authorized_scope(@q.result))
   end
 
   def new

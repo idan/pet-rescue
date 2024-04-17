@@ -165,3 +165,6 @@ gem "rails-controller-testing"
 
 # Use Action Policy for authorization framework
 gem "action_policy", "~> 0.6.8"
+
+# Add the pagy dependency for pagination
+gem "pagy"

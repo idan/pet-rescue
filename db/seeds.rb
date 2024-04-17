@@ -23,6 +23,24 @@ ActiveRecord::Base.transaction do
     puts "[ Seeding ] #{seed} completed"
   end
 
+  # Add seeds to create 50 pets in total
+  50.times do |i|
+    Pet.create!(
+      name: "Pet #{i + 1}",
+      birth_date: Date.today - (2 * i).days,
+      sex: ['Male', 'Female'].sample,
+      species: ['Dog', 'Cat'].sample,
+      breed: ['Breed 1', 'Breed 2', 'Breed 3'].sample,
+      description: "Description for Pet #{i + 1}",
+      weight_from: rand(1..10),
+      weight_to: rand(11..20),
+      weight_unit: 'kg',
+      placement_type: ['Adoptable', 'Fosterable', 'Adoptable and Fosterable'].sample,
+      organization_id: Organization.first.id,
+      published: [true, false].sample
+    )
+  end
+
   puts "\n\n"
   log_seed_output "-----------------------"
   log_seed_output "🌱 Seed Process ended in #{Time.now - a} seconds"

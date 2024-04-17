@@ -114,6 +114,10 @@
             </tbody>
           </table>
         </div>
+        <!-- Pagination -->
+        <% if @pagy.pages > 1 %>
+          <%== pagy_nav(@pagy) %>
+        <% end %>
       </div>
     </div>
   <% end %>
